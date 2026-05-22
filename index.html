@@ -14,15 +14,11 @@
       --soft: #f4f7fb;
       --text: #273043;
       --muted: #64748b;
-      --green: #3fa66b;
-      --red: #d65c5c;
       --shadow: 0 18px 45px rgba(23, 32, 51, 0.14);
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -51,27 +47,14 @@
       overflow: hidden;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto -80px -120px auto;
-      width: 300px;
-      height: 300px;
-      background: rgba(242,184,75,0.35);
-      border-radius: 999px;
-    }
-
     .eyebrow {
       display: inline-flex;
-      gap: 8px;
-      align-items: center;
       background: rgba(255,255,255,0.14);
       border: 1px solid rgba(255,255,255,0.24);
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 0.86rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
       text-transform: uppercase;
     }
 
@@ -80,6 +63,17 @@
       line-height: 1;
       margin: 18px 0;
       max-width: 850px;
+    }
+
+    h2 {
+      color: var(--navy);
+      margin-top: 0;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    h3 {
+      color: var(--blue);
+      margin-bottom: 8px;
     }
 
     .hero p {
@@ -96,7 +90,6 @@
     }
 
     .button {
-      appearance: none;
       border: 0;
       border-radius: 999px;
       padding: 13px 18px;
@@ -104,19 +97,12 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
+      color: inherit;
     }
 
     .button.primary {
       background: var(--gold);
       color: #1f2937;
-      box-shadow: 0 12px 30px rgba(242,184,75,0.28);
     }
 
     .button.secondary {
@@ -125,52 +111,85 @@
       border: 1px solid rgba(255,255,255,0.28);
     }
 
-    .metrics {
+    .metrics,
+    .budget-grid,
+    .card-grid {
       display: grid;
+      gap: 16px;
+    }
+
+    .metrics {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
       margin: 22px 0;
     }
 
+    .metric,
+    section {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(100,116,139,0.14);
+      box-shadow: 0 12px 30px rgba(23,32,51,0.07);
+    }
+
     .metric {
-      background: white;
       border-radius: var(--radius);
       padding: 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(100,116,139,0.13);
     }
 
     .metric strong {
       display: block;
       font-size: 1.8rem;
       color: var(--navy);
-      line-height: 1.1;
     }
 
-    .metric span {
+    .metric span,
+    footer,
+    .print-note {
       color: var(--muted);
-      font-size: 0.92rem;
     }
 
     section {
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(100,116,139,0.14);
       border-radius: var(--radius);
       padding: 28px;
       margin: 22px 0;
-      box-shadow: 0 12px 30px rgba(23,32,51,0.07);
     }
 
-    h2 {
+    .budget-grid,
+    .card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .budget-card,
+    .info-card {
+      border-radius: 18px;
+      padding: 18px;
+      background: var(--soft);
+      border: 1px solid rgba(100,116,139,0.16);
+    }
+
+    .budget-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .amount {
+      font-size: 1.45rem;
+      font-weight: 900;
       color: var(--navy);
-      margin-top: 0;
-      font-size: clamp(1.5rem, 3vw, 2rem);
     }
 
-    h3 {
-      color: var(--blue);
-      margin-bottom: 8px;
+    .bar {
+      height: 10px;
+      background: #dbeafe;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
     }
 
     .tabs {
@@ -197,59 +216,10 @@
 
     .tab-panel {
       display: none;
-      animation: fade 0.25s ease;
     }
 
     .tab-panel.active {
       display: block;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .budget-grid,
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .budget-card,
-    .info-card {
-      border-radius: 18px;
-      padding: 18px;
-      background: var(--soft);
-      border: 1px solid rgba(100,116,139,0.16);
-    }
-
-    .budget-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .amount {
-      font-size: 1.45rem;
-      font-weight: 900;
-      color: var(--navy);
-    }
-
-    .bar {
-      height: 10px;
-      background: #dbeafe;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 12px;
-    }
-
-    .bar span {
-      display: block;
-      height: 100%;
-      background: linear-gradient(90deg, var(--blue), var(--gold));
-      border-radius: 999px;
     }
 
     details {
@@ -284,11 +254,7 @@
 
     .timeline-item {
       margin-bottom: 18px;
-    }
-
-    .timeline-item strong {
-      display: block;
-      color: var(--navy);
+      padding-bottom: 10px;
     }
 
     .callout {
@@ -299,21 +265,8 @@
       margin: 18px 0;
     }
 
-    .mission-statement {
-      font-size: 1.08rem;
-      color: #334155;
-    }
-
-    .print-note {
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-align: center;
-      margin: 28px 0;
-    }
-
     footer {
       text-align: center;
-      color: var(--muted);
       padding: 24px;
     }
 
@@ -335,8 +288,7 @@
 
     @media print {
       .hero-actions,
-      .tabs,
-      .button {
+      .tabs {
         display: none;
       }
 
@@ -347,12 +299,6 @@
       body {
         background: white;
       }
-
-      section,
-      .hero,
-      .metric {
-        box-shadow: none;
-      }
     }
   </style>
 </head>
@@ -360,385 +306,288 @@
 <body>
   <div class="page">
     <header class="hero">
-      <div class="eyebrow">🏛️ Missions & Mental Health • Greece Restoration Initiative</div>
+      <div class="eyebrow">Missions & Mental Health • Greece Restoration Initiative</div>
       <h1>The Distomo Resilience Project</h1>
       <p>
-        A community restoration and healing initiative centered on rebuilding spaces, restoring dignity,
-        and supporting survivors through public service, storytelling, cultural preservation, and
-        trauma-informed outreach.
+        A community restoration and healing initiative centered on rebuilding spaces,
+        restoring dignity, and supporting survivors through public service, storytelling,
+        cultural preservation, and trauma-informed outreach.
       </p>
 
       <div class="hero-actions">
         <a class="button primary" href="#funding">Explore Funding Plan</a>
-        <a class="button secondary" href="#proposal">View Grant Narrative</a>
+        <a class="button secondary" href="#itinerary">View Itinerary</a>
         <button class="button secondary" onclick="window.print()">Print / Save as PDF</button>
       </div>
     </header>
 
     <div class="metrics">
-      <div class="metric">
-        <strong>$17K</strong>
-        <span>14-day pilot mission goal</span>
-      </div>
-      <div class="metric">
-        <strong>4</strong>
-        <span>core volunteer team members</span>
-      </div>
-      <div class="metric">
-        <strong>3</strong>
-        <span>impact areas: restoration, healing, storytelling</span>
-      </div>
-      <div class="metric">
-        <strong>1</strong>
-        <span>replicable model for future communities</span>
-      </div>
+      <div class="metric"><strong>$17K</strong><span>14-day pilot mission goal</span></div>
+      <div class="metric"><strong>4</strong><span>core volunteer team members</span></div>
+      <div class="metric"><strong>3</strong><span>restoration, healing, storytelling</span></div>
+      <div class="metric"><strong>1</strong><span>replicable model for future communities</span></div>
     </div>
 
     <section id="overview">
-      <h2>🌿 Project Overview</h2>
-      <p class="mission-statement">
-        Missions & Mental Health is evolving into a broader community restoration and healing initiative
-        that connects physical renewal with mental health awareness, survivor advocacy, and public education.
+      <h2>Project Overview</h2>
+      <p>
+        Missions & Mental Health connects physical renewal with mental health awareness,
+        survivor advocacy, public education, and cultural preservation.
       </p>
 
       <div class="card-grid">
         <div class="info-card">
           <h3>Community Restoration</h3>
-          <p>
-            Painting buildings, restoring neglected public spaces, beautifying neighborhoods,
-            and helping preserve culturally meaningful places in Distomo and surrounding communities.
-          </p>
+          <p>Painting buildings, restoring neglected spaces, beautifying neighborhoods, and preserving meaningful places.</p>
         </div>
-
         <div class="info-card">
           <h3>Trauma-Informed Outreach</h3>
-          <p>
-            Supporting awareness and dignity for veterans, survivors of sexual assault and abuse,
-            families, and underserved communities through education, dialogue, and creative healing.
-          </p>
+          <p>Supporting veterans, survivors, families, and underserved communities through dignity-centered programming.</p>
         </div>
-
         <div class="info-card">
           <h3>Storytelling & Mapping</h3>
-          <p>
-            Using digital storytelling, GIS mapping, historical research, interviews, photography,
-            and public documentation to show how trauma and recovery shape people and places over time.
-          </p>
+          <p>Using GIS, photography, interviews, and history to document trauma, recovery, and resilience.</p>
         </div>
-
         <div class="info-card">
           <h3>Cultural Preservation</h3>
-          <p>
-            Honoring local history, memory, and identity while creating visible improvements that
-            strengthen civic pride and community connection.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="interactive">
-      <h2>✨ Interactive Grant Dashboard</h2>
-
-      <div class="tabs">
-        <button class="tab active" onclick="showTab('mission')">Mission</button>
-        <button class="tab" onclick="showTab('budget')">Budget</button>
-        <button class="tab" onclick="showTab('funders')">Funders</button>
-        <button class="tab" onclick="showTab('impact')">Impact</button>
-        <button class="tab" onclick="showTab('roadmap')">Roadmap</button>
-      </div>
-
-      <div id="mission" class="tab-panel active">
-        <h3>Core Mission</h3>
-        <p>
-          The Distomo Resilience Project uses restoration work, survivor-centered advocacy,
-          and digital public history to create a practical model of healing through service.
-        </p>
-        <div class="callout">
-          <strong>Grant-ready framing:</strong> This is not only a mission trip. It is a pilot program
-          for community-based restoration, trauma awareness, cultural preservation, and educational outreach.
-        </div>
-      </div>
-
-      <div id="budget" class="tab-panel">
-        <h3>Budget Snapshot</h3>
-
-        <div class="budget-grid">
-          <div class="budget-card">
-            <div class="budget-top">
-              <strong>Travel & Logistics</strong>
-              <span class="amount">$6,800</span>
-            </div>
-            <p>Flights, local transportation, site access, and mission logistics.</p>
-            <div class="bar"><span style="width:40%"></span></div>
-          </div>
-
-          <div class="budget-card">
-            <div class="budget-top">
-              <strong>Accommodation & Food</strong>
-              <span class="amount">$3,600</span>
-            </div>
-            <p>14 nights lodging and daily food allowance for a four-person team.</p>
-            <div class="bar"><span style="width:21%"></span></div>
-          </div>
-
-          <div class="budget-card">
-            <div class="budget-top">
-              <strong>Building & Art Materials</strong>
-              <span class="amount">$4,600</span>
-            </div>
-            <p>Exterior paint, primer, scaffolding or lift rental, safety gear, brushes, rollers, and creative supplies.</p>
-            <div class="bar"><span style="width:27%"></span></div>
-          </div>
-
-          <div class="budget-card">
-            <div class="budget-top">
-              <strong>Program & Administration</strong>
-              <span class="amount">$2,000</span>
-            </div>
-            <p>Insurance, workshop supplies, local collaborator support, documentation, and platform fees.</p>
-            <div class="bar"><span style="width:12%"></span></div>
-          </div>
-        </div>
-
-        <div class="callout">
-          <strong>Total pilot fundraising goal:</strong> $17,000
-        </div>
-      </div>
-
-      <div id="funders" class="tab-panel">
-        <h3>Potential Funding Targets</h3>
-
-        <details open>
-          <summary>Stavros Niarchos Foundation</summary>
-          <p>
-            Possible alignment: arts, culture, health, public benefit, community impact, and Greece-based initiatives.
-          </p>
-          <span class="tag">Greece</span>
-          <span class="tag">Health</span>
-          <span class="tag">Culture</span>
-          <span class="tag">Community Impact</span>
-        </details>
-
-        <details>
-          <summary>John S. Latsis Public Benefit Foundation</summary>
-          <p>
-            Possible alignment: education, sustainable development, social action, solidarity, and Greek civil society partnerships.
-          </p>
-          <span class="tag">Social Action</span>
-          <span class="tag">Solidarity</span>
-          <span class="tag">Education</span>
-          <span class="tag">Greece</span>
-        </details>
-
-        <details>
-          <summary>Open Society Foundations</summary>
-          <p>
-            Possible alignment: civil society, justice, equity, human rights, survivor dignity, and community resilience.
-            Note: many grants are invitation-based, so this may work best through partnerships or open calls.
-          </p>
-          <span class="tag">Civil Society</span>
-          <span class="tag">Human Rights</span>
-          <span class="tag">Equity</span>
-          <span class="tag">Advocacy</span>
-        </details>
-
-        <details>
-          <summary>Local Sponsors & Diaspora Partners</summary>
-          <p>
-            Greek-American organizations, local businesses, churches, cultural associations, veteran groups,
-            survivor advocacy groups, and community service clubs may be strong early supporters.
-          </p>
-          <span class="tag">Sponsorship</span>
-          <span class="tag">Community</span>
-          <span class="tag">Diaspora</span>
-        </details>
-      </div>
-
-      <div id="impact" class="tab-panel">
-        <h3>Measurable Impact Areas</h3>
-
-        <div class="card-grid">
-          <div class="info-card">
-            <h3>Physical Impact</h3>
-            <p>Square footage restored, buildings painted, public spaces cleaned, and before/after documentation.</p>
-          </div>
-
-          <div class="info-card">
-            <h3>Social Impact</h3>
-            <p>Volunteer hours, community participation, local partnerships, and public engagement.</p>
-          </div>
-
-          <div class="info-card">
-            <h3>Mental Health Impact</h3>
-            <p>Workshops held, resource materials shared, survivor-centered outreach, and stigma reduction messaging.</p>
-          </div>
-
-          <div class="info-card">
-            <h3>Educational Impact</h3>
-            <p>Story maps, oral histories, public exhibits, classroom materials, and digital documentation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="roadmap" class="tab-panel">
-        <h3>Pilot Roadmap</h3>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <strong>Phase 1 — Planning & Partnerships</strong>
-            Confirm local collaborators, restoration site, permissions, safety needs, and community priorities.
-          </div>
-
-          <div class="timeline-item">
-            <strong>Phase 2 — Fundraising & Sponsorship</strong>
-            Launch donation page, sponsor packet, grant outreach, and community storytelling campaign.
-          </div>
-
-          <div class="timeline-item">
-            <strong>Phase 3 — Restoration Mission</strong>
-            Complete painting, clean-up, beautification, creative workshops, interviews, and documentation.
-          </div>
-
-          <div class="timeline-item">
-            <strong>Phase 4 — Public Storytelling</strong>
-            Publish before/after gallery, GIS impact map, reflection report, and educational materials.
-          </div>
-
-          <div class="timeline-item">
-            <strong>Phase 5 — Replication</strong>
-            Use the Distomo pilot as a model for future Missions & Mental Health community restoration projects.
-          </div>
+          <p>Honoring memory and identity while creating visible improvements that strengthen civic pride.</p>
         </div>
       </div>
     </section>
 
     <section id="funding">
-      <h2>💲 Funding Plan</h2>
-      <p>
-        The initial pilot goal is <strong>$17,000</strong> for a 14-day, four-person mission team.
-        This budget supports travel, lodging, food, restoration supplies, safety equipment,
-        community programming, documentation, and administrative needs.
-      </p>
+      <h2>Funding Plan</h2>
+
+      <div class="budget-grid">
+        <div class="budget-card">
+          <div class="budget-top"><strong>Travel & Logistics</strong><span class="amount">$6,800</span></div>
+          <p>Flights, local transportation, site access, and mission logistics.</p>
+          <div class="bar"><span style="width:40%"></span></div>
+        </div>
+
+        <div class="budget-card">
+          <div class="budget-top"><strong>Accommodation & Food</strong><span class="amount">$3,600</span></div>
+          <p>Lodging and food allowance for a four-person team.</p>
+          <div class="bar"><span style="width:21%"></span></div>
+        </div>
+
+        <div class="budget-card">
+          <div class="budget-top"><strong>Building & Art Materials</strong><span class="amount">$4,600</span></div>
+          <p>Paint, primer, safety gear, scaffolding/lift rental, brushes, rollers, and art supplies.</p>
+          <div class="bar"><span style="width:27%"></span></div>
+        </div>
+
+        <div class="budget-card">
+          <div class="budget-top"><strong>Program & Administration</strong><span class="amount">$2,000</span></div>
+          <p>Insurance, documentation, local collaborator support, supplies, and platform fees.</p>
+          <div class="bar"><span style="width:12%"></span></div>
+        </div>
+      </div>
 
       <div class="callout">
-        <strong>Important grant angle:</strong> Funders should see this as a visible, durable,
-        community-centered investment — not a one-time trip. The restored space, documentation,
-        story map, and public education materials continue creating value after the mission ends.
+        <strong>Total pilot fundraising goal:</strong> $17,000
       </div>
     </section>
 
+    <section id="funders">
+      <h2>Potential Funders & Sponsors</h2>
+
+      <details open>
+        <summary>Stavros Niarchos Foundation</summary>
+        <p>Potential alignment: arts, culture, health, public benefit, Greece-based community impact.</p>
+        <span class="tag">Greece</span><span class="tag">Health</span><span class="tag">Culture</span>
+      </details>
+
+      <details>
+        <summary>John S. Latsis Public Benefit Foundation</summary>
+        <p>Potential alignment: education, social action, sustainable development, and solidarity initiatives.</p>
+        <span class="tag">Social Action</span><span class="tag">Education</span><span class="tag">Greece</span>
+      </details>
+
+      <details>
+        <summary>Open Society Foundations</summary>
+        <p>Potential alignment: civil society, justice, survivor dignity, human rights, and resilience.</p>
+        <span class="tag">Civil Society</span><span class="tag">Human Rights</span><span class="tag">Advocacy</span>
+      </details>
+
+      <details>
+        <summary>Local Sponsors & Diaspora Partners</summary>
+        <p>Greek-American organizations, cultural associations, churches, veteran groups, survivor advocacy groups, and service clubs.</p>
+        <span class="tag">Sponsorship</span><span class="tag">Community</span><span class="tag">Diaspora</span>
+      </details>
+    </section>
+
     <section id="proposal">
-      <h2>📝 Grant Proposal Narrative</h2>
+      <h2>Grant Proposal Narrative</h2>
 
       <h3>Project Title</h3>
       <p><strong>The Distomo Resilience Project: Restoring Spaces, Preserving Memory, and Supporting Community Healing</strong></p>
 
       <h3>Need Statement</h3>
       <p>
-        Communities shaped by trauma, conflict, displacement, violence, and historical grief often carry
-        visible and invisible wounds. Neglected public spaces can deepen that sense of abandonment,
-        while stigma around trauma can prevent survivors, veterans, families, and underserved groups
-        from feeling seen, supported, or connected.
+        Communities shaped by trauma, conflict, displacement, violence, and historical grief
+        often carry visible and invisible wounds. Neglected public spaces can deepen that sense
+        of abandonment, while stigma around trauma can prevent survivors, veterans, families,
+        and underserved groups from feeling seen, supported, or connected.
       </p>
 
       <h3>Proposed Solution</h3>
       <p>
-        The Distomo Resilience Project responds by combining practical restoration work with
-        trauma-informed storytelling and public education. Through painting, clean-up, beautification,
-        creative workshops, digital mapping, and historical documentation, the project creates a shared
-        process of renewal that honors both place and people.
+        The project combines restoration work with trauma-informed storytelling and public education.
+        Through painting, clean-up, beautification, workshops, mapping, and historical documentation,
+        the initiative creates a shared process of renewal.
       </p>
 
       <h3>Key Deliverables</h3>
       <ul>
         <li>Restore or beautify at least one community building or public space.</li>
-        <li>Create a before-and-after visual archive documenting the restoration process.</li>
-        <li>Develop a digital story map showing the project location, history, restoration work, and community impact.</li>
-        <li>Host or support trauma-informed creative reflection activities.</li>
-        <li>Publish a short public impact report for funders, sponsors, and community partners.</li>
+        <li>Create before-and-after documentation.</li>
+        <li>Develop a digital story map.</li>
+        <li>Host trauma-informed creative reflection activities.</li>
+        <li>Publish a public impact report.</li>
       </ul>
+    </section>
 
-      <h3>Long-Term Vision</h3>
+    <section id="itinerary">
+      <h2>Proposed 14-Day Mission Itinerary</h2>
+
       <p>
-        The Distomo pilot will serve as a replicable model for future Missions & Mental Health projects
-        that combine public service, survivor dignity, cultural preservation, mental health awareness,
-        and community-based restoration.
+        The mission combines restoration work, cultural immersion, wellness practices,
+        community engagement, reflection, sightseeing, and storytelling.
       </p>
+
+      <div class="callout">
+        <strong>Mission Philosophy:</strong> Healing happens through meaningful work,
+        shared meals, cultural connection, movement, creativity, reflection, and service.
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="showSchedule('week1', this)">Week 1</button>
+        <button class="tab" onclick="showSchedule('week2', this)">Week 2</button>
+        <button class="tab" onclick="showSchedule('daily', this)">Typical Day</button>
+      </div>
+
+      <div id="week1" class="tab-panel active">
+        <div class="timeline">
+          <div class="timeline-item"><strong>Day 1 — Arrival in Greece</strong> Arrival, lodging setup, safety briefing, grounding walk, and welcome dinner.</div>
+          <div class="timeline-item"><strong>Day 2 — Community Introduction</strong> Meet collaborators, tour sites, assess materials, document before photos, and evening reflection.</div>
+          <div class="timeline-item"><strong>Day 3 — Cleanup & Prep</strong> Trash removal, sanding, wall preparation, landscaping cleanup, and wellness check-ins.</div>
+          <div class="timeline-item"><strong>Day 4 — Painting Begins</strong> Exterior painting, mural planning, community participation, storytelling interviews, and dinner.</div>
+          <div class="timeline-item"><strong>Day 5 — Healing Through Art</strong> Morning restoration work and afternoon creative workshop focused on resilience and hope.</div>
+          <div class="timeline-item"><strong>Day 6 — Cultural Exploration</strong> Sightseeing, local history, memorial or museum visit, journaling, photography, and rest.</div>
+          <div class="timeline-item"><strong>Day 7 — Community Meal</strong> Shared dinner, oral history conversations, music, storytelling, and team reflection.</div>
+        </div>
+      </div>
+
+      <div id="week2" class="tab-panel">
+        <div class="timeline">
+          <div class="timeline-item"><strong>Day 8 — Restoration Expansion</strong> Continue painting, clean-up, greenery, and before/after documentation.</div>
+          <div class="timeline-item"><strong>Day 9 — Public Space Enhancement</strong> Improve benches, pathways, signage, and gathering areas.</div>
+          <div class="timeline-item"><strong>Day 10 — Survivor-Centered Outreach</strong> Wellness activities, resource sharing, and resilience discussions.</div>
+          <div class="timeline-item"><strong>Day 11 — GIS Mapping & Storytelling</strong> Photography, interviews, GPS/GIS mapping, and digital documentation.</div>
+          <div class="timeline-item"><strong>Day 12 — Final Restoration Push</strong> Finish painting, detailing, cleanup, and reveal preparation.</div>
+          <div class="timeline-item"><strong>Day 13 — Celebration</strong> Public unveiling, shared meal, gratitude ceremony, and recognition.</div>
+          <div class="timeline-item"><strong>Day 14 — Reflection & Departure</strong> Final reflection, documentation backup, future planning, and travel home.</div>
+        </div>
+      </div>
+
+      <div id="daily" class="tab-panel">
+        <div class="card-grid">
+          <div class="info-card">
+            <h3>Morning</h3>
+            <ul>
+              <li>Breakfast</li>
+              <li>Grounding/check-in</li>
+              <li>Volunteer assignments</li>
+              <li>Cleanup/restoration work</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Afternoon</h3>
+            <ul>
+              <li>Lunch</li>
+              <li>Painting and beautification</li>
+              <li>Community interaction</li>
+              <li>Story collection</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Evening</h3>
+            <ul>
+              <li>Dinner together</li>
+              <li>Reflection circle</li>
+              <li>Journaling or art</li>
+              <li>Sightseeing or rest</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Wellness Focus</h3>
+            <ul>
+              <li>Trauma-informed approach</li>
+              <li>Rest periods</li>
+              <li>Creative expression</li>
+              <li>Purpose-driven volunteerism</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>🎨 Sample Workshop: Painting Our Resilience</h2>
-      <p><strong>Length:</strong> 90 minutes</p>
-      <p><strong>Theme:</strong> Expressing past, present, and hope through color, shape, and shared reflection.</p>
+      <h2>Sample Workshop: Painting Our Resilience</h2>
 
       <details open>
         <summary>Step 1: Grounding & Connection</summary>
-        <p>
-          Begin with gentle breathing, a simple safety statement, and a non-verbal check-in using colors.
-        </p>
+        <p>Begin with breathing, a simple safety statement, and a color-based check-in.</p>
       </details>
 
       <details>
         <summary>Step 2: Landscape of Emotion</summary>
-        <p>
-          Participants create three sections representing past, present, and future using abstract marks,
-          colors, textures, and shapes.
-        </p>
+        <p>Participants create abstract sections representing past, present, and future.</p>
       </details>
 
       <details>
         <summary>Step 3: Finding the Bridge</summary>
-        <p>
-          Participants add lines, paths, patterns, or symbols that connect the three sections,
-          modeling integration and movement forward.
-        </p>
+        <p>Participants connect the sections with lines, paths, symbols, or patterns.</p>
       </details>
 
       <details>
         <summary>Step 4: Reflection</summary>
-        <p>
-          Sharing is voluntary. The focus is not artistic skill, but meaning, safety, dignity,
-          and the possibility of hope.
-        </p>
+        <p>Sharing is voluntary. The focus is meaning, safety, dignity, and hope.</p>
       </details>
     </section>
 
     <section>
-      <h2>🌟 Sustainability & Healing Benefits</h2>
+      <h2>Sustainability & Healing Benefits</h2>
 
       <div class="card-grid">
         <div class="info-card">
           <h3>Social Sustainability</h3>
-          <p>
-            Shared restoration work can strengthen trust, connection, and civic pride.
-          </p>
+          <p>Shared restoration work can strengthen trust, connection, and civic pride.</p>
         </div>
 
         <div class="info-card">
           <h3>Economic Sustainability</h3>
-          <p>
-            Durable materials and visible improvements may reduce future maintenance needs and support local engagement.
-          </p>
+          <p>Durable materials and visible improvements may reduce future maintenance needs.</p>
         </div>
 
         <div class="info-card">
           <h3>Environmental Sustainability</h3>
-          <p>
-            Low-VOC paint, careful material selection, and clean-up practices support healthier public spaces.
-          </p>
+          <p>Low-VOC paint and clean-up practices support healthier public spaces.</p>
         </div>
 
         <div class="info-card">
           <h3>Mental Health Benefits</h3>
-          <p>
-            Purposeful service, creative expression, and community connection can support resilience and reduce isolation.
-          </p>
+          <p>Purposeful service and creative expression can support resilience and reduce isolation.</p>
         </div>
       </div>
     </section>
 
     <p class="print-note">
-      This page can be used as a public-facing funding guide, sponsor packet, grant planning page, or printable PDF.
+      This page can be used as a funding guide, sponsor packet, grant planning page, or printable PDF.
     </p>
 
     <footer>
@@ -747,15 +596,16 @@
   </div>
 
   <script>
-    function showTab(tabId) {
-      const tabs = document.querySelectorAll(".tab");
-      const panels = document.querySelectorAll(".tab-panel");
+    function showSchedule(scheduleId, button) {
+      const itinerary = document.getElementById("itinerary");
+      const panels = itinerary.querySelectorAll(".tab-panel");
+      const tabs = itinerary.querySelectorAll(".tab");
 
-      tabs.forEach((tab) => tab.classList.remove("active"));
-      panels.forEach((panel) => panel.classList.remove("active"));
+      panels.forEach(panel => panel.classList.remove("active"));
+      tabs.forEach(tab => tab.classList.remove("active"));
 
-      document.getElementById(tabId).classList.add("active");
-      event.currentTarget.classList.add("active");
+      document.getElementById(scheduleId).classList.add("active");
+      button.classList.add("active");
     }
   </script>
 </body>
